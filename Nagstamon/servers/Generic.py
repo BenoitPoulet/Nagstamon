@@ -248,6 +248,7 @@ class GenericServer:
         # Centreon
         self.use_autologin = False
         self.autologin_key = ''
+        self.show_host_aliases = False
         # Icinga
         self.use_display_name_host = False
         self.use_display_name_service = False

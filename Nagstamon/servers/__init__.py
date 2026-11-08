@@ -177,6 +177,7 @@ def create_server(server=None):
     # Centreon
     new_server.use_autologin = server.use_autologin
     new_server.autologin_key = server.autologin_key
+    new_server.show_host_aliases = server.show_host_aliases
 
     # Icinga
     new_server.use_display_name_host = server.use_display_name_host
@@ -272,5 +273,3 @@ for server in conf.servers.values():
         servers[server.name] = created_server
         # for the next time no auth needed
         servers[server.name].refresh_authentication = False
-
-

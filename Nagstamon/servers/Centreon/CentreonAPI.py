@@ -362,6 +362,10 @@ class CentreonServer(GenericServer):
                 for alerts in data["result"]:
                     new_host = alerts["name"]
                     self.new_hosts[new_host] = GenericHost()
+                    # if self.show_host_aliases is True:
+                    #     new_host = alerts["name"] + " (" + alerts["alias"] + ")"
+                    # else:
+                    #     new_host = alerts["name"]
                     self.new_hosts[new_host].name = alerts["name"]
                     self.new_hosts[new_host].server = self.name
                     # API inconsistency, even by fixing exact version number, changed starting with 22.04
@@ -423,7 +427,11 @@ class CentreonServer(GenericServer):
                     if alerts["type"] == "metaservice":
                         new_host = "Meta_Services"
                     else:
-                        new_host = alerts["parent"]["name"]
+                        if self.show_host_aliases is True:
+                            #new_host = alerts["parent"]["name"] + " (" + alerts["parent"]["alias"] + ")"
+                            new_host = alerts["parent"]["name"]
+                        else:
+                            new_host = alerts["parent"]["name"]
                     new_service = alerts["name"]
                     # Needed if non-ok services are on a UP host
                     if not new_host in self.new_hosts:
@@ -436,7 +444,8 @@ class CentreonServer(GenericServer):
                                debug='Service indexed : ' + new_host + ' / ' + new_service)
 
                     self.new_hosts[new_host].services[new_service].server = self.name
-                    self.new_hosts[new_host].services[new_service].host = new_host
+                    #self.new_hosts[new_host].services[new_service].host = new_host
+                    self.new_hosts[new_host].services[new_service].host = alerts["parent"]["name"] + " (" + alerts["parent"]["alias"] + ")"
                     self.new_hosts[new_host].services[new_service].name = new_service
                     self.new_hosts[new_host].services[new_service].status = alerts["status"]["name"]
                     self.new_hosts[new_host].services[new_service].last_check = alerts["last_check"]

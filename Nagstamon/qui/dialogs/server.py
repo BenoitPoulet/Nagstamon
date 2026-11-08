@@ -128,6 +128,7 @@ class DialogServer(Dialog):
             self.window.label_notification_lookback: ['IcingaDBWebNotifications'],
             self.window.label_disabled_backends: ['Thruk'],
             self.window.input_lineedit_disabled_backends: ['Thruk'],
+            self.window.input_checkbox_show_host_aliases: ['Centreon'],
         }
 
         # to be used when selecting authentication method Kerberos or Web

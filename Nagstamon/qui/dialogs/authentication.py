@@ -55,6 +55,7 @@ class DialogAuthentication(Dialog):
                 self.window.input_lineedit_autologin_key.setText(self.server.autologin_key)
                 # initialize autologin
                 self.toggle_autologin()
+                self.window.input_checkbox_show_host_aliases.show()
             else:
                 self.window.input_checkbox_use_autologin.hide()
                 self.window.input_lineedit_autologin_key.hide()

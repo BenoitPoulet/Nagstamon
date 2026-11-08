@@ -120,7 +120,8 @@ CONFIG_STRINGS = ['custom_browser',
                   'autologin_key',
                   'custom_cert_ca_file',
                   'idp_ecp_endpoint',
-                  'monitor_site'
+                  'monitor_site',
+                  'show_host_aliases'
                   ]
 
 
@@ -325,6 +326,7 @@ class Config:
         self.re_criticality_enabled = False
         self.re_criticality_pattern = ''
         self.re_criticality_reverse = False
+        self.show_host_aliases = False
 
         # the app is unconfigured by default and will stay so if it
         # would not find a config file
@@ -1069,6 +1071,7 @@ class Server:
         # Centreon autologin
         self.use_autologin = False
         self.autologin_key = ''
+        self.show_host_aliases = False
 
         # Icinga "host_display_name" instead of "host"
         self.use_display_name_host = False
